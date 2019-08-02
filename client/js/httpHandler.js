@@ -14,10 +14,24 @@
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
+    // create a GET request
+    $.ajax({
+      type: 'GET',
+      data: formData,
+      url: serverUrl,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: () => {
+        // reload the page
+        window.location = window.location.href;
+      }
+    });
+
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
