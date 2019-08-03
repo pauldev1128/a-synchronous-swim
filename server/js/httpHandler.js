@@ -23,9 +23,9 @@ module.exports.router = (req, res, next = ()=>{}) => {
 
   if (req.method === 'GET') {
     res.writeHead(200, headers);
-    console.log(randomArrow());
-    // res.write()
-    res.end(randomArrow())
+    // console.log(randomArrow());
+    res.write(randomArrow())
+    res.end()
   } else if (req.method === "OPTIONS") {
     res.writeHead(200, headers);
     console.log("options")

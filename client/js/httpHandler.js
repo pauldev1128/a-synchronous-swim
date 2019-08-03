@@ -7,8 +7,7 @@
   //
   let fetchCommand = () => {
     $.get(serverUrl, function(data) {
-      $('body').html(data);
-      alert('Get request success!');
+      console.log(data);
       SwimTeam.move(data);
     })
   }
@@ -23,19 +22,19 @@
     var formData = new FormData();
     formData.append('file', file);
     // create a GET request
-    $.ajax({
-      type: 'GET',
-      data: formData,
-      url: serverUrl,
-      cache: false,
-      contentType: false,
-      processData: false,
-      success: (direction) => {
-        // reload the page
-        return SwimTeam.move(randomArrow());
-        // window.location = window.location.href;
-      }
-    });
+    // $.ajax({
+    //   type: 'GET',
+    //   data: formData,
+    //   url: serverUrl,
+    //   cache: false,
+    //   contentType: false,
+    //   processData: false,
+    //   success: (direction) => {
+    //     // reload the page
+    //     return SwimTeam.move(randomArrow());
+    //     window.location = window.location.href;
+    //   }
+    // });
 
     $.ajax({
       type: 'POST',
