@@ -5,6 +5,14 @@
   //
   // TODO: build the swim command fetcher here
   //
+  let fetchCommand = () => {
+    $.get(serverUrl, function(data) {
+      $('body').html(data);
+      alert('Get request success!');
+      SwimTeam.move(data);
+    })
+  }
+  fetchCommand();
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -22,9 +30,10 @@
       cache: false,
       contentType: false,
       processData: false,
-      success: () => {
+      success: (direction) => {
         // reload the page
-        window.location = window.location.href;
+        return SwimTeam.move(randomArrow());
+        // window.location = window.location.href;
       }
     });
 
@@ -59,5 +68,10 @@
 
     ajaxFileUplaod(file);
   });
+
+  $('.move').on('click', function(event) {
+    console.log('click worked');
+    fetchCommand();
+  })
 
 })();
