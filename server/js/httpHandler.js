@@ -12,18 +12,30 @@ module.exports.initialize = (queue) => {
   messageQueue = queue;
 };
 
+const randomArrow = function() {
+  let directions = Math.floor(Math.random()*4)
+  let arr = ["up", "down", 'left', 'right'];
+  return arr[directions];
+}
+
 module.exports.router = (req, res, next = ()=>{}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
 
   if (req.method === 'GET') {
-    console.log('hits here')
-    console.log(req.method ,"1")
-    res.end('hello from your server')
+    res.writeHead(200, headers);
+    console.log(randomArrow())
+    res.end()
   } else if (req.method === "OPTIONS") {
-    console.log(req.method, "2")
+    res.writeHead(200, headers);
+    console.log("options")
+    res.end()
+  } else {
+    res.writeHead(404, headers);
+    console.log("fail")
+    res.end()
   }
-  res.writeHead(200, headers);
-  res.end();
+  // res.writeHead(200, headers);
+  // res.end();
   next(); // invoke next() at the end of a request to help with testing!
 };
 
